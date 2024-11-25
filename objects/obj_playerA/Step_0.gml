@@ -1,5 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
+
 if(!isWinged){
 	vspeed+=acc;
 	if(vspeed>=0){
@@ -129,4 +130,22 @@ if(isWinged){
 	if(moveRight){
 		x+=10;
 	}
+}
+
+// Jumping and Falling (Stretch)
+if (vspeed < 0) {
+    image_yscale = lerp(image_yscale, 0.8, 0.2); // Jumping: Stretch vertically
+    image_xscale = lerp(image_xscale, 1.2, 0.2);
+} else if (vspeed > 0) {
+    image_yscale = lerp(image_yscale, 1.2, 0.2); // Falling: Stretch more vertically
+    image_xscale = lerp(image_xscale, 0.8, 0.2);
+} else if (falling && place_meeting(x, y + 1, obj_cloud)) {
+    image_yscale = 1.2; // Landing: Squash horizontally
+    image_xscale = 0.8;
+    alarm[0] = room_speed / 10; // Reset scale after 0.1 seconds
+    falling = false;
+} else {
+    // Idle: Reset to default
+    image_yscale = lerp(image_yscale, 1, 0.2);
+    image_xscale = lerp(image_xscale, 1, 0.2);
 }
