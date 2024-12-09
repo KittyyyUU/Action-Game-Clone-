@@ -32,3 +32,16 @@ if(y>room_height-cam_height/2){
 	y_follow=room_height-cam_height;
 }
 camera_set_view_pos(view_camera[0],x_follow,y_follow);
+
+if (shake_duration > 0) {
+    var cam_x = camera_get_view_x(view_camera[0]);
+    var cam_y = camera_get_view_y(view_camera[0]);
+    camera_set_view_pos(view_camera[0], cam_x + random_range(-shake_intensity, shake_intensity), cam_y + random_range(-shake_intensity, shake_intensity));
+    shake_duration -= 1;
+    
+    if (shake_duration <= 0) {
+        var reset_cam_x = camera_get_view_x(view_camera[0]);
+        var reset_cam_y = camera_get_view_y(view_camera[0]);
+        camera_set_view_pos(view_camera[0], reset_cam_x, reset_cam_y);
+    }
+}

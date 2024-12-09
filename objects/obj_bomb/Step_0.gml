@@ -16,6 +16,8 @@ if(id.sprite_index!=spr_explosion){
 if(timer==0){
 	y=temp_y;
 	id.sprite_index=spr_explosion;
+	obj_cameraPos.shake_intensity = 20;
+    obj_cameraPos.shake_duration = 20;
 	if(instance_exists(obj_playerA)){
 		if(place_meeting(x,y,obj_playerA)&&!obj_playerA.isBubbled){
 			global.playerAScore--;
@@ -41,3 +43,4 @@ if(id.sprite_index==spr_explosion&&!selfDestroy){
 	selfDestroy=true;
 	audio_play_sound(snd_explosion,0,false);
 }
+

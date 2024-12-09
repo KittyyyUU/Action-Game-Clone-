@@ -66,6 +66,8 @@ if(hspeed!=0){
 	if(!boundarySndPlayed){
 		audio_play_sound(snd_boundary,0,false);
 		boundarySndPlayed=true;
+		obj_cameraPos.shake_intensity = 10;
+        obj_cameraPos.shake_duration = 10;
 	}
 	if(hspeed>0){
 		hspeed-=1;
